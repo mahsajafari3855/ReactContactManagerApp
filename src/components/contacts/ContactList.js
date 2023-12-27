@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ContactItem from "./ContactItem";
 import SearchBar from "./SearchBar";
@@ -7,22 +7,6 @@ const ContactList = () => {
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]); // State for filtered contacts
   const [searchTerm, setSearchTerm] = useState("");
-  const handleSearch = useCallback(
-    (value) => {
-      setSearchTerm(value);
-
-      // Filter contacts based on search term (name or phone)
-      const filtered = contacts.filter(
-        (contact) =>
-          contact?.first_name?.toLowerCase().includes(value.toLowerCase()) ||
-          contact?.phone.includes(value)
-      );
-
-      setFilteredContacts(filtered);
-    },
-    [contacts]
-  );
-
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -37,7 +21,20 @@ const ContactList = () => {
 
     fetchContacts();
   }, []);
+  let debounceTimer;
 
+  const handleSearch = (value) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const filtered = contacts.filter(
+        (contact) =>
+          contact?.first_name?.toLowerCase().includes(value.toLowerCase()) ||
+          contact?.phone.includes(value)
+      );
+      setFilteredContacts(filtered);
+      setSearchTerm(value);
+    }, 2000);
+  };
   return (
     <div>
       {console.log("contactList")}
@@ -46,7 +43,7 @@ const ContactList = () => {
 
       <ul>
         {filteredContacts?.map((contact) => (
-          <ContactItem key={contact?.id} contact={contact}  />
+          <ContactItem key={contact?.id} contact={contact} />
         ))}
       </ul>
     </div>
