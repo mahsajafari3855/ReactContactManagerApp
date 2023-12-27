@@ -3,7 +3,7 @@ import React from "react";
 const ContactItem = ({ contact }) => {
   return (
     <li>
-      {contact.name} - {contact.phone} - {contact.city}
+      {contact.first_name} {contact.last_name} - {contact.phone}
     </li>
   );
 };
