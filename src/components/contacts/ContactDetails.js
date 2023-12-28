@@ -6,24 +6,39 @@ const ContactDetails = () => {
   const { id } = useParams();
   const [contact, setContact] = useState(null);
 
-  useEffect(() => {
-    const fetchContact = async () => {
+  useEffect(
+    () => async () => {
       try {
         const response = await axios.get(
           `http://localhost:1337/passenger/${id}`
         );
-        setContact(response.data);
+        const fetchedContact = response.data;
+        setContact(fetchedContact);
+        updateRecentContacts(fetchedContact); // Update recent contacts
       } catch (error) {
         console.error("Error fetching contact details:", error);
       }
-    };
+    },
 
-    fetchContact();
-  }, [id]);
+    []
+  );
+
+  const updateRecentContacts = (newContact) => {
+    const storedContacts = localStorage.getItem("recentContacts");
+    let recentContacts = storedContacts ? JSON.parse(storedContacts) : [];
+
+    const filteredContacts = recentContacts.filter(
+      (contact) => contact.id !== newContact.id
+    );
+
+    const updatedContacts = [newContact, ...filteredContacts].slice(0, 4);
+    localStorage.setItem("recentContacts", JSON.stringify(updatedContacts));
+  };
+
 
   return (
     <div>
-      {console.log("ContactDetails")}
+      {console.log("contactDetails")}
       <h2>Contact Details</h2>
       {contact ? (
         <div>
@@ -31,7 +46,6 @@ const ContactDetails = () => {
             Name: {contact.first_name} {contact.last_name}
           </p>
           <p>Phone: {contact.phone}</p>
-          {/* Display other contact details */}
         </div>
       ) : (
         <p>Loading...</p>
@@ -40,4 +54,4 @@ const ContactDetails = () => {
   );
 };
 
-export default ContactDetails;
+export default React.memo(ContactDetails);

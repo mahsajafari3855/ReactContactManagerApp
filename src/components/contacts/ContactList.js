@@ -7,34 +7,54 @@ const ContactList = () => {
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]); // State for filtered contacts
   const [searchTerm, setSearchTerm] = useState("");
+  const [lastContacts, setLastContacts] = useState([]); // State for filtered contacts
 
-  useEffect(() => {
-    const fetchContacts = async () => {
+  useEffect(
+    () => async () => {
       try {
         const response = await axios.get("http://localhost:1337/passenger");
-        setContacts(response?.data?.items);
-        setFilteredContacts(response?.data?.items); // Set filtered contacts initially
+        const fetchedContacts = response?.data?.items || [];
+        setContacts(fetchedContacts);
+        setFilteredContacts(fetchedContacts);
+        const storedRecentContacts = localStorage.getItem("recentContacts");
+        const recentContacts = storedRecentContacts
+          ? JSON.parse(storedRecentContacts)
+          : [];
+        if (recentContacts) {
+          setLastContacts(recentContacts);
+        }
       } catch (error) {
         console.error("Error fetching contacts:", error);
       }
-    };
+    },
+    []
+  );
 
-    fetchContacts();
-  }, []);
-  let debounceTimer;
+  useEffect(() => {
+    const myArr = [];
+    lastContacts.forEach((element) => {
+      myArr.push(element.id);
+    });
+    const newFilterArray = contacts.filter(
+      (item) => myArr.findIndex((element) => element === item.id) === -1
+    );
+
+    newFilterArray.unshift(...lastContacts);
+
+    setFilteredContacts(newFilterArray);
+  }, [lastContacts]);
 
   const handleSearch = (value) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      const filtered = contacts.filter(
-        (contact) =>
-          contact?.first_name?.toLowerCase().includes(value.toLowerCase()) ||
-          contact?.phone.includes(value)
-      );
-      setFilteredContacts(filtered);
-      setSearchTerm(value);
-    }, 2000);
+    const filtered = contacts.filter(
+      (contact) =>
+        contact?.first_name?.toLowerCase().includes(value.toLowerCase()) ||
+        contact?.phone.includes(value)
+    );
+
+    setFilteredContacts(filtered);
+    setSearchTerm(value);
   };
+
   return (
     <div>
       {console.log("contactList")}
