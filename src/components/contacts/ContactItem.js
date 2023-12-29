@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DefaultAvatar from "../../assest/user.jpg";
 
 const ContactItem = ({ contact }) => {
   const { id, avatar, first_name, last_name, company, phone } = contact;
@@ -10,8 +11,9 @@ const ContactItem = ({ contact }) => {
         <img
           alt="user"
           className="w-24 h-24 rounded-full mx-auto"
-          src={avatar}
+          src={avatar ? avatar : DefaultAvatar}
         />
+
         <figcaption className="text-center">
           <p className="text-gray-700 font-semibold text-xl mb-2">
             {first_name} {last_name}

@@ -28,7 +28,7 @@ const ContactList = () => {
           setLastContacts(recentContacts);
         }
       } catch (error) {
-        setLoading(false); // Update loading state in case of error
+        setLoading(false); 
 
         console.error("Error fetching contacts:", error);
       }

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { RiseLoader } from "react-spinners";
+import DefaultAvatar from "../../assest/user.jpg";
 
 const ContactDetails = () => {
-  const { id } = useParams();
+  const{id}=useParams()
   const [contact, setContact] = useState(null);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(
     () => async () => {
@@ -62,7 +64,11 @@ const ContactDetails = () => {
                 <p className="text-gray-600">Telegram: {contact.telegram}</p>
               </div>
               <div className="justify-center items-center shadow m-7">
-                <img alt="user" className="mx-auto " src={contact.avatar} />
+                <img
+                  alt="user"
+                  className="mx-auto "
+                  src={contact.avatar ? contact.avatar : DefaultAvatar}
+                />
               </div>
             </div>
             {contact.note && (
