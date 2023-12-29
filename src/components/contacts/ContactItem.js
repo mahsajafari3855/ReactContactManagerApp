@@ -1,33 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const ContactItem = ({ contact }) => {
+  const { id, avatar, first_name, last_name, company, phone } = contact;
+
   return (
-    <>
-      <figure className="bg-white h-80 rounded-lg shadow-md pt-7">
+    <Link to={{ pathname: `/${id}`, state: { contact } }}>
+      <figure className="bg-white h-64 rounded-lg shadow-md mb-4">
         <img
           alt="user"
-          className="w-32 h-32 rounded-full mx-auto"
-          src={contact.avatar}
+          className="w-24 h-24 rounded-full mx-auto"
+          src={avatar}
         />
-        <figcaption className="text-center mt-5">
-          <Link to={{ pathname: `/${contact.id}`, state: { contact } }}>
-            <p className="text-gray-700 font-semibold text-xl mb-2">
-              {contact.first_name} {contact.last_name}
-            </p>
-            <p className="text-gray-500 font-medium ">
-              <span>Company:</span>
-              {contact.company}
-            </p>
-            <p className="text-gray-500 font-medium">
-              <span>Phone:</span>
-              {contact.phone}
-            </p>
-          </Link>
+        <figcaption className="text-center">
+          <p className="text-gray-700 font-semibold text-xl mb-2">
+            {first_name} {last_name}
+          </p>
+          <p className="text-gray-500 font-medium">
+            <span>Company:</span> {company}
+          </p>
+          <p className="text-gray-500 font-medium">
+            <span>Phone:</span> {phone}
+          </p>
         </figcaption>
       </figure>
-    </>
+    </Link>
   );
 };
 

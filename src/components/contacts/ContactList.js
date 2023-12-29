@@ -58,9 +58,11 @@ const ContactList = () => {
   return (
     <div className="bg-gray-100 ">
       {console.log("contactList")}
-      <SearchBar handleSearch={handleSearch} />
+      <div className=" flex item-center justify-center mx-8">
+        <SearchBar handleSearch={handleSearch} />
+      </div>
 
-      <div className=" p-20 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className=" p-5 grid sm:grid-cols-2 md:grid-cols-4  sm:gap-2 lg:gap-6 ">
         {filteredContacts?.map((contact) => (
           <ContactItem key={contact?.id} contact={contact} />
         ))}

@@ -9,17 +9,16 @@ const SearchBar = ({ handleSearch }) => {
   };
 
   return (
-    <div>
-      {console.log("searchBar")}
+    <>
 
       <input
         type="text"
         placeholder="Search contacts..."
         value={searchTerm}
         onChange={handleChange}
-        className="ml-20 mt-6 rounded-md p-2"
+        className=" mt-6 rounded-md p-2 w-full"
       />
-    </div>
+    </>
   );
 };
 
