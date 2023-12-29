@@ -17,6 +17,7 @@ const SearchBar = ({ handleSearch }) => {
         placeholder="Search contacts..."
         value={searchTerm}
         onChange={handleChange}
+        className="ml-20 mt-6 rounded-md p-2"
       />
     </div>
   );
