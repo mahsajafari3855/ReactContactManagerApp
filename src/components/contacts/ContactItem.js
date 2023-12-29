@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const ContactItem = ({ contact, handleReset }) => {
+const ContactItem = ({ contact}) => {
 
   
 
