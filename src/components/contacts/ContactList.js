@@ -48,7 +48,8 @@ const ContactList = () => {
     const filtered = contacts.filter(
       (contact) =>
         contact?.first_name?.toLowerCase().includes(value.toLowerCase()) ||
-        contact?.phone.includes(value)
+        contact?.phone.includes(value) ||
+        contact?.last_name?.toLowerCase().includes(value.toLowerCase())
     );
 
     setFilteredContacts(filtered);
