@@ -2,12 +2,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ContactItem from "./ContactItem";
 import SearchBar from "./SearchBar";
+import { RiseLoader } from "react-spinners";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]); // State for filtered contacts
   const [searchTerm, setSearchTerm] = useState("");
   const [lastContacts, setLastContacts] = useState([]); // State for filtered contacts
+  const [loading, setLoading] = useState(true); // New state for loading status
 
   useEffect(
     () => async () => {
@@ -16,6 +18,8 @@ const ContactList = () => {
         const fetchedContacts = response?.data?.items || [];
         setContacts(fetchedContacts);
         setFilteredContacts(fetchedContacts);
+        setLoading(false);
+
         const storedRecentContacts = localStorage.getItem("recentContacts");
         const recentContacts = storedRecentContacts
           ? JSON.parse(storedRecentContacts)
@@ -24,6 +28,8 @@ const ContactList = () => {
           setLastContacts(recentContacts);
         }
       } catch (error) {
+        setLoading(false); // Update loading state in case of error
+
         console.error("Error fetching contacts:", error);
       }
     },
@@ -53,6 +59,7 @@ const ContactList = () => {
     );
 
     setFilteredContacts(filtered);
+
     setSearchTerm(value);
   };
 
@@ -62,12 +69,17 @@ const ContactList = () => {
       <div className=" flex item-center justify-center mx-8">
         <SearchBar handleSearch={handleSearch} />
       </div>
-
-      <div className=" p-5 grid sm:grid-cols-2 md:grid-cols-4  sm:gap-2 lg:gap-6 ">
-        {filteredContacts?.map((contact) => (
-          <ContactItem key={contact?.id} contact={contact} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-white z-50">
+          <RiseLoader color="#e542eb" />
+        </div>
+      ) : (
+        <div className=" p-5 grid sm:grid-cols-2 md:grid-cols-4  sm:gap-2 lg:gap-6 ">
+          {filteredContacts?.map((contact) => (
+            <ContactItem key={contact?.id} contact={contact} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

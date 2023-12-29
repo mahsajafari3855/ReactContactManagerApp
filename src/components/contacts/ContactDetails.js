@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { RiseLoader } from "react-spinners";
 
 const ContactDetails = () => {
   const { id } = useParams();
   const [contact, setContact] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(
     () => async () => {
@@ -15,8 +16,12 @@ const ContactDetails = () => {
         );
         const fetchedContact = response.data;
         setContact(fetchedContact);
+        setLoading(false);
+
         updateRecentContacts(fetchedContact); // Update recent contacts
       } catch (error) {
+        setLoading(false);
+
         console.error("Error fetching contact details:", error);
       }
     },
@@ -40,7 +45,11 @@ const ContactDetails = () => {
     <div className="bg-gray-100 min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-4">Contact Details</h2>
-        {contact ? (
+        {loading ? ( // Check if loading, show loading indicator
+          <div className="flex justify-center items-center h-40">
+            <RiseLoader color="#e542eb" />
+          </div>
+        ) : (
           <div>
             <div className="grid md:grid-cols-2">
               <div className="pt-10 ">
@@ -63,14 +72,11 @@ const ContactDetails = () => {
               </div>
             )}
           </div>
-        ) : (
-          <p>Loading...</p>
         )}
         <Link
           to="/"
           className="block  text-center mt-8  hover:underline bg-gray-300 py-2 px-4 rounded-md"
         >
-          
           Back to Contacts
         </Link>
       </div>
