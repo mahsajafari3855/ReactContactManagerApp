@@ -6,9 +6,11 @@ const ContactItem = ({ contact }) => {
   const { id, avatar, first_name, last_name, company, phone } = contact;
 
   return (
-    <div className={`contact-item contact-item-${id}`}>
+    <div
+      className={`contact-item contact-item-${id} bg-white h-64 rounded-lg shadow-md mb-4 overflow-hidden transition duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1`}
+    >
       <Link to={{ pathname: `/${id}`, state: { contact } }}>
-        <figure className="bg-white h-64 rounded-lg shadow-md mb-4">
+        <figure className="bg-white h-64 rounded-lg mb-2">
           <img
             alt="user"
             className="w-24 h-24 rounded-full mx-auto"

@@ -3,20 +3,18 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { RiseLoader } from "react-spinners";
 import DefaultAvatar from "../../assest/user.jpg";
+import { fetchContactDetails } from "../../api/index";
 
 const ContactDetails = () => {
-  const{id}=useParams()
+  const { id } = useParams();
   const [contact, setContact] = useState(null);
   const [loading, setLoading] = useState(true);
-  
 
   useEffect(
     () => async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:1337/passenger/${id}`
-        );
-        const fetchedContact = response.data;
+        const fetchedContact = await fetchContactDetails(id);
+
         setContact(fetchedContact);
         setLoading(false);
 
@@ -90,4 +88,4 @@ const ContactDetails = () => {
   );
 };
 
-export default React.memo(ContactDetails);
+export default ContactDetails;
