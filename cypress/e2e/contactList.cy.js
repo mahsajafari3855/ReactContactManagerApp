@@ -41,4 +41,9 @@ describe("Contact List", () => {
       cy.get(".back-btn").first().click(); // Navigates back
     }
   });
+  describe("ErrorBoundary", () => {
+    it("displays an error message when an error occurs", () => {
+      cy.visit("http://localhost:3000/error-boundary"); // Navigate to the specific route for ErrorBoundary testing
+    });
+  });
 });
