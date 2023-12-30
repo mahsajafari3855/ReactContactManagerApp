@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Contact Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Contact Management Application! This project is a React-based solution designed for efficient contact management.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This project aims to streamline the management of contacts by providing various functionalities to view, search, and display detailed information about each contact. It utilizes React, React Router for routing, and Axios for API handling.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Contact List
+- Displays a list of contacts fetched from an API source.
+- Allows filtering contacts based on first_name, last, or phone number using the search bar.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Contact Details
+- Provides detailed information about a selected contact, including name, phone, email, gender, and more.
+- Displays an avatar image if available.
 
-### `npm test`
+### Error Handling
+- Utilizes Error Boundary components to catch errors during rendering and displays a fallback UI.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Testing
+- Implements Cypress for end-to-end testing, including error boundary scenarios.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
+1. Clone this repository.
+2. Run `npm install` to install dependencies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Run the Project
+- Execute `npm start` to launch the development server at [http://localhost:3000](http://localhost:3000).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Testing
+- Use Cypress for end-to-end testing: `npx cypress open`.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `src/` contains the project's source code.
+  - `components/` holds various UI components.
+    - `contacts/` contains components related to contact management.
+  - `api/` includes functions to handle API requests.
+  - `ErrorBoundaryTest.js` for testing error boundaries.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### API Handling
+- "axios": "^1.6.3"
 
-## Learn More
+### React & Related Libraries
+- "react": "^18.2.0"
+- "react-dom": "^18.2.0"
+- "react-router-dom": "^6.21.1"
+- "react-scripts": "5.0.1"
+- "react-spinners": "^0.13.8"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Other Tools
+- "cypress": "^13.6.2"
+- "tailwindcss": "^3.4.0"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Additional Notes
 
-### Code Splitting
+- Each component file provides specific implementations and functionalities.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to explore the individual components to understand their functionalities and explore test files for an understanding of the testing suites.
