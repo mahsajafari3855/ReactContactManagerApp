@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ContactItem from "./ContactItem";
+import NoContactsFound from "../NotContetnFound"
 import SearchBar from "./SearchBar";
 import { RiseLoader } from "react-spinners";
+
 
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);
@@ -74,10 +76,14 @@ const ContactList = () => {
           <RiseLoader color="#e542eb" />
         </div>
       ) : (
-        <div className=" p-5 grid sm:grid-cols-2 md:grid-cols-4  sm:gap-2 lg:gap-6 ">
-          {filteredContacts?.map((contact) => (
-            <ContactItem key={contact?.id} contact={contact} />
-          ))}
+        <div className="p-5 grid sm:grid-cols-2 md:grid-cols-4 sm:gap-2 lg:gap-6 ">
+          {filteredContacts?.length === 0 ? (
+            <NoContactsFound /> // Render the component when no contacts are found
+          ) : (
+            filteredContacts.map((contact) => (
+              <ContactItem key={contact?.id} contact={contact} />
+            ))
+          )}
         </div>
       )}
     </div>
