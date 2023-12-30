@@ -1,4 +1,4 @@
-const NoContactsFound = () => {
+const NotFound = () => {
   return (
     <div className="fixed  bg-gray-100 w-full h-full flex justify-center items-center ">
       <div className="text-center">
@@ -16,11 +16,11 @@ const NoContactsFound = () => {
           />
         </svg>
         <p className="mt-4 text-lg font-medium text-purple-600">
-          No contacts found
+          Contact Not Found
         </p>
       </div>
     </div>
   );
 };
 
-export default NoContactsFound;
+export default NotFound;

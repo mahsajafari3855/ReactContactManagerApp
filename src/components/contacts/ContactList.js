@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ContactItem from "./ContactItem";
-import NoContactsFound from "../NotContetnFound"
+import NoContactsFound from "../NotFound"
 import SearchBar from "./SearchBar";
 import { RiseLoader } from "react-spinners";
 
