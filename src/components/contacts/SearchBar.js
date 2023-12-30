@@ -10,7 +10,6 @@ const SearchBar = ({ handleSearch }) => {
 
   return (
     <>
-
       <input
         type="text"
         placeholder="Search contacts..."
