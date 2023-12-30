@@ -1,6 +1,6 @@
 const NotFound = () => {
   return (
-    <div className="fixed  bg-gray-100 w-full h-full flex justify-center items-center ">
+    <div className="fixed  bg-gray-100 w-full h-full flex justify-center items-center no-contacts-found ">
       <div className="text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

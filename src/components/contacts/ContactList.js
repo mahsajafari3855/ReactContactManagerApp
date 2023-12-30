@@ -67,21 +67,23 @@ const ContactList = () => {
 
   return (
     <div className="bg-gray-100 ">
-      {console.log("contactList")}
-      <div className=" flex item-center justify-center mx-8">
-        <SearchBar handleSearch={handleSearch} />
+      <div className=" flex item-center justify-center mx-8 search-bar">
+        <SearchBar handleSearch={handleSearch}/>
       </div>
       {loading ? (
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-white z-50">
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-white z-50 loading-spinner">
           <RiseLoader color="#e542eb" />
         </div>
       ) : (
         <div className="p-5 grid sm:grid-cols-2 md:grid-cols-4 sm:gap-2 lg:gap-6 ">
           {filteredContacts?.length === 0 ? (
-            <NoContactsFound /> // Render the component when no contacts are found
+            <NoContactsFound />
           ) : (
             filteredContacts.map((contact) => (
-              <ContactItem key={contact?.id} contact={contact} />
+              <ContactItem
+                key={contact?.id}
+                contact={contact}
+              />
             ))
           )}
         </div>

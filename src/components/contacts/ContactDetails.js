@@ -81,7 +81,7 @@ const ContactDetails = () => {
         )}
         <Link
           to="/"
-          className="block  text-center mt-8  hover:underline bg-gray-300 py-2 px-4 rounded-md"
+          className="block  text-center mt-8  hover:underline bg-gray-300 py-2 px-4 rounded-md back-btn"
         >
           Back to Contacts
         </Link>
